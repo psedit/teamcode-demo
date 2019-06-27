@@ -44,4 +44,4 @@ class Human:
     use_net_chance = 0.1
     
 class Grid:
-    size = (60, 60)
+    size = (40, 40)

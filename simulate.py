@@ -1,6 +1,6 @@
 import config
 import random
-from mixins import Hunger, Infectable, SimpleDeath, NaturalDeath, MalariaDeath
+from mixins import *
 from stats import SimStats
 from collections import defaultdict
 from event import Event
