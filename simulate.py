@@ -6,37 +6,6 @@ from collections import defaultdict
 from event import Event
 import itertools
 
-class Actor:
-    """
-    Represents an actor in a simulation.
-
-    To update the actor in a timestep, call Actor.step (at the start of a timestep)
-    and Actor.end_step (at the end of a timestep).
-
-    To test whether an Actor is of a certain subclass, call Actor.is_<subclass>.
-    """
-    def __init__(self, sim, config, *rest, **kwa):
-        self.args = (sim, config, *rest)
-        self.sim, self.global_config = sim, config
-        self.config = getattr(self.global_config, type(self).__name__)
-
-    def __repr__(self):
-        return f"{type(self).__name__}({self.args})"
-
-    def step(self):
-        """ Override to perform tasks at the start of a timestep. """
-        pass
-
-    def end_step(self):
-        """ Override to perform tasks at the end of a timestep. """
-        pass
-
-    def __init_subclass__(cls):
-        """ Augments the base class by adding is_<subclass> methods. """
-        super().__init_subclass__()
-        fn_name = f"is_{cls.__name__.lower()}"
-        setattr(Actor, fn_name, lambda self: isinstance(self, cls))
-
 
 class Human(Actor, Infectable, NaturalDeath, MalariaDeath):
     """ Represents a human. """
